@@ -1,39 +1,33 @@
-# 🔍 工业表面缺陷检测系统
+# 工业表面缺陷检测（YOLOv8）
 
-基于 **YOLOv8** 的钢铁表面缺陷实时检测系统，支持 6 类典型工业缺陷的识别与定位。
+基于 YOLOv8 在 NEU-DET 数据集上训练的缺陷检测模型，支持 6 类材料表面缺陷检测。真实训练结果，mAP50 = 0.779。
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-orange)
-![Gradio](https://img.shields.io/badge/UI-Gradio-green)
-![mAP50](https://img.shields.io/badge/mAP50-0.821-brightgreen)
+![mAP50](https://img.shields.io/badge/mAP50-0.779-brightgreen)
 
-## 📌 项目简介
+## 截图
 
-工业生产中，钢铁表面缺陷的检测是质量控制的关键环节。本项目使用 YOLOv8 目标检测模型，基于 NEU-DET 公开数据集，实现了对 6 类钢铁表面缺陷的自动检测与定位，并提供了 Gradio 交互式演示界面。
-
-## 🖼️ 演示截图
-
-**检测界面**
+检测界面
 
 ![app_demo](results/demo/app_demo.png)
 
-**训练过程**
+训练过程
 
 ![training_curves](results/demo/training_curves.png)
 
-**各类别性能**
+各类别性能
 
 ![per_class_map](results/demo/per_class_map.png)
 
-**混淆矩阵**
+混淆矩阵
 
 ![confusion_matrix](results/demo/confusion_matrix.png)
 
-**超参数消融实验**
+消融实验
 
 ![ablation_study](results/demo/ablation_study.png)
 
-## 🏷️ 支持的缺陷类别
+## 缺陷类别
 
 | 类别 | 中文名 | 说明 |
 |------|--------|------|
@@ -61,7 +55,7 @@
 |--------|------|------|-----------|------|
 | 0.814 | 0.896 | 0.822 | 0.558 | 0.803 |
 
-## 📓 实验 Notebooks
+## Notebooks
 
 | Notebook | 内容 |
 |----------|------|
@@ -69,7 +63,7 @@
 | [02_model_training.ipynb](notebooks/02_model_training.ipynb) | 模型选型对比、超参数消融实验、训练曲线 |
 | [03_results_analysis.ipynb](notebooks/03_results_analysis.ipynb) | 混淆矩阵、置信度分析、失败案例分析 |
 
-## 🏗️ 项目结构
+## 目录结构
 
 ```
 industrial-defect-detection/
@@ -92,7 +86,7 @@ industrial-defect-detection/
 └── results/demo/                   # 预生成演示结果图
 ```
 
-## 🚀 快速开始
+## 运行
 
 ### 1. 安装依赖
 ```bash
@@ -136,7 +130,7 @@ python app.py
 
 > 在真实 NEU-DET 数据集（1800张）上，YOLOv8s 训练 100 epoch 可达 mAP50 ≈ 0.82+
 
-## 🛠️ 技术栈
+## 技术栈
 
 - **模型**: YOLOv8 (Ultralytics)
 - **数据集**: NEU Surface Defect Database
