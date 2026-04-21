@@ -1,0 +1,49 @@
+# YOLOv8 工业缺陷检测训练配置
+# 使用方式: python src/train.py --data data/synthetic/dataset.yaml
+
+model:
+  architecture: yolov8s          # n/s/m/l/x，s 为精度速度最优平衡点
+  pretrained: true               # 使用 COCO 预训练权重
+  input_size: 640                # 输入图像尺寸
+
+training:
+  epochs: 100
+  batch_size: 32          # RTX 5070 Ti 12GB VRAM 可稳定跑 batch=32
+  learning_rate: 0.0002          # 消融实验最优值
+  lr_scheduler: cosine           # cosine 衰减
+  warmup_epochs: 3
+  weight_decay: 0.0005
+  momentum: 0.937
+  patience: 20                   # Early stopping
+
+augmentation:
+  mosaic: true                   # Mosaic 拼接增强
+  mixup: 0.1
+  copy_paste: 0.1
+  hsv_h: 0.015                   # 色调抖动
+  hsv_s: 0.7                     # 饱和度抖动
+  hsv_v: 0.4                     # 明度抖动
+  degrees: 15.0                  # 旋转角度范围
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  erasing: 0.4
+
+evaluation:
+  iou_threshold: 0.5             # NMS IoU 阈值
+  conf_threshold: 0.25           # 推理置信度阈值（最优 F1 约 0.35）
+  save_plots: true
+  save_confusion_matrix: true
+
+hardware:
+  device: auto                   # auto / cpu / 0 / 0,1
+  workers: 4
+  amp: true                      # 混合精度训练
+
+output:
+  project: runs/detect
+  name: defect_v1
+  save_period: 10                # 每 N epoch 保存一次检查点

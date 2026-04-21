@@ -1,0 +1,9 @@
+data/
+weights/
+runs/
+results/
+__pycache__/
+*.pyc
+*.pth
+*.pt
+.env
